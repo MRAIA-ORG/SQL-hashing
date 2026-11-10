@@ -10,9 +10,9 @@ SQL Server scripts that hash patient details inside the database, plus Windows b
 
 * `SQLFiles/HashSetup.sql` creates the hash function and the clean-up functions. Run it once with `hash_setup.bat`.
 * `SQLFiles/InsertintoHash.sql` cleans the patient details and makes the hash values. `SQLFiles/SelectHash.sql` exports them. `hash_run_site.bat` runs both and writes a CSV to `Output/`.
-* `todecryptSaltFile.bat` uses OpenSSL to unlock the salt file with the site's private key.
+* `todecryptSaltFile.bat` uses OpenSSL to unlock the RSA-encrypted salt file of this older flow with the site's private key. Salt files from linkja-salt-engine today are plain text.
 
-The batch files call `sqlcmd.exe` from SQL Server 2012 (`Tools\Binn` under version `110`).
+`hash_setup.bat` and `hash_run_site.bat` call `sqlcmd.exe` from SQL Server 2012 (`Tools\Binn` under version `110`).
 
 ## Its hash values do not match linkja-hashing
 
